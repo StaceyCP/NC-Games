@@ -9,7 +9,7 @@ const ncGamesApi = axios.create({
 
 export const getReviews = () => {
     return ncGamesApi.get('/reviews').then(({ data }) => {
-        console.log(data.reviews)
+        return data.reviews
     })
 }
 

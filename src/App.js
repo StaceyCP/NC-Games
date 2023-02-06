@@ -1,15 +1,18 @@
-import { useEffect } from 'react';
-import { getReviews } from './api';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Header from './components/Header';
+import ReviewsHome from './components/ReviewsHome';
 
 function App() {
-  useEffect(() => {
-    getReviews()
-  }, []);
-  
   return (
     <div className="App">
-      <h1>NC-Games</h1>
+      <Header/>
+      <Routes>
+        <Route 
+          path='/' 
+          element={<ReviewsHome/>}>
+        </Route>
+      </Routes>
     </div>
   );
 }

@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# NC-Games 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a continuation of the solo nc-games back end project here I aim to create the front end to utilise the back end.
 
 ## Available Scripts
 

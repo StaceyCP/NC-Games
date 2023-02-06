@@ -2,7 +2,7 @@ const commentIcon = require('../assets/chat.png');
 const likeIcon = require('../assets/heart.png')
 function ReviewCard({ review }) {
     const text = review.review_body
-    const flavourText = text.substring(0, 150);
+    const flavourText = text.substring(0, 100);
     const date = new Date(review.created_at)
     const configuredDate = date.toLocaleDateString()
     return (

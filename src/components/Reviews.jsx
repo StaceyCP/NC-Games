@@ -3,14 +3,20 @@ import { ReviewsContext } from "../contexts/ReviewsContext";
 import ReviewCard from "./ReviewCard";
 
 function Reviews() {
-    const {reviews, setReviews} = useContext(ReviewsContext)
-    return (
-        <section>
-            {reviews.map(review => {
-                return <ReviewCard key={review.review_id} review={review}/>
-            })}
-        </section>
-    );
+    const {reviews, setReviews, reviewsLoading, setReviewsLoading} = useContext(ReviewsContext)
+    if (!reviewsLoading) {
+        return (
+            <section className="reviews-container">
+                {reviews.map(review => {
+                    return <ReviewCard key={review.review_id} review={review}/>
+                })}
+            </section>
+        );
+    } else {
+        return (
+            <h2>Reviews Loading ... </h2>
+        )
+    }
 }
 
 export default Reviews;

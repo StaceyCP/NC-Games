@@ -1,6 +1,7 @@
 # NC-Games 
 
 This is a continuation of the solo nc-games back end project here I aim to create the front end to utilise the back end.
+Please find a link to rhe figma plans here: https://www.figma.com/file/oU3WSdDghcnNF3QEGJJHzA/NC-Games-Reviews?node-id=0%3A1&t=FdaX8izeSyU38gZG-0
 
 ## Available Scripts
 

@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
+import ReviewPage from './components/ReviewPage';
 import ReviewsHome from './components/ReviewsHome';
 
 function App() {
@@ -11,6 +12,11 @@ function App() {
         <Route 
           path='/' 
           element={<ReviewsHome/>}>
+        </Route>
+        <Route 
+          path='/reviews/:review_id'
+          element={<ReviewPage/>}
+        >
         </Route>
       </Routes>
     </div>

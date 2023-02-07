@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ReviewsContext } from "../contexts/ReviewsContext";
 import ReviewCard from "./ReviewCard";
+import Loading from "./Loading";
 
 function Reviews() {
     const {reviews, setReviews, reviewsLoading, setReviewsLoading} = useContext(ReviewsContext)
@@ -15,9 +16,7 @@ function Reviews() {
             </section>
         );
     } else {
-        return (
-            <h2>Reviews Loading ... </h2>
-        )
+        return <Loading component={"Reviews"}/>
     }
 }
 

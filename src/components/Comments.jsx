@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getReviewComments } from "../api";
+import Loading from './Loading';
 
 const commentIcon = require('../assets/chat.png');
 const likeIcon = require('../assets/heart.png');
@@ -39,7 +40,7 @@ function Comments() {
             </section>
         );
     } else {
-        return <h3>Comments loading...</h3>
+        return <Loading component={"Comments"}/>
     }
 }
 

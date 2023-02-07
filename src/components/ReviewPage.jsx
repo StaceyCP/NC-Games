@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getReviewById } from "../api";
 import Comments from "./Comments";
+import Loading from "./Loading";
+
 const commentIcon = require('../assets/chat.png');
 const likeIcon = require('../assets/heart.png');
 
@@ -52,7 +54,7 @@ function ReviewPage() {
             </main>
         );
     } else {
-        return <h2>Review is loading...</h2>
+        return <Loading component={"Review"}/>
     }
 }
 

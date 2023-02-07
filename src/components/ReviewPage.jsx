@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getReviewById } from "../api";
+import Comments from "./Comments";
 const commentIcon = require('../assets/chat.png');
-const likeIcon = require('../assets/heart.png')
+const likeIcon = require('../assets/heart.png');
 
 function ReviewPage() {
     const [review, setReview] = useState({});
@@ -45,7 +46,9 @@ function ReviewPage() {
                         <button className="reaction-page_reaction dislike" type="button">Dislike</button>
                         <p>{review.votes} impressions</p>
                     </div>
+                    <hr></hr>
                 </section>
+                <Comments/>
             </main>
         );
     } else {

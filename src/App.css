@@ -1,3 +1,5 @@
+/* General Styling */
+
 .App {
   text-align: center;
 }
@@ -7,12 +9,29 @@ body {
   box-sizing: border-box;
   color: whitesmoke;
   font-family: 'Poppins';
-  font-size: 12px;
 }
+
+h1 {
+  font-size: 1.4rem;
+  margin: 10px 0px;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin: 10px 0px;
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin: 10px 0px;
+}
+
+/* Header and Navigation */
 
 .nc-games-header {
   display: flex;
   flex-direction: column;
+  width: 100vw;
 }
 
 .user-navigation {
@@ -30,28 +49,232 @@ body {
 }
 
 .user-navigation_links li {
-  margin: 20px;
+  margin: 15px;
 }
+
+
+/* Reviews */
 
 .reviews-container {
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0 auto;
   text-align: left;
-  margin: 0px auto;
   width: 90%
 }
 
-.review-card {
-  display: flex;
-  flex-direction: row;
-  margin: 20px;
+.reviews-container hr {
   width: 100%;
 }
 
-.review-card_img {
-  height: 40%;
+.reviews-container hr:last-of-type {
+  display: none;
+}
+
+.review-card {
+  flex-direction: column;
   margin: 20px;
-  width: 40%;
+}
+
+.review-card_img {
+  margin: 20px auto;
+  width: 100%;
+}
+
+.review-card_statistics {
+  align-items: flex-end;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  font-size: 10px;
+  margin-top: -40px;
+}
+
+.review-card_statistics img{
+  height: 16px;
+  margin: 8px;
+  width: 16px;
+}
+
+/* Review Page */
+
+.review-page {
+  margin-top: 15px;
+  width: 100vw;
+}
+
+.review-page_img {
+  width: 100%;
+}
+
+.review-page_content {
+  text-align: left;
+  margin: 0px auto;
+  width: 90%;
+}
+
+.review-page_post-details {
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+}
+
+.review-page_post-content {
+  padding: 8px;
+}
+
+.review-page_review-owner p {
+  margin-bottom: 4px;
+}
+
+.review-page_review-statistics {
+  align-items: flex-end;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  font-size: 10px;
+  margin-right: -50px;
+}
+
+.review-page_review-statistics img{
+  height: 16px;
+  margin: 8px;
+  width: 16px;
+}
+
+.review-page_reactions {
+  text-align: center;
+}
+
+.review-page_reactions button {
+  margin: 10px 15px;
+}
+
+.review-page_reactions p {
+  text-align: center;
+}
+
+/* Media queries */
+
+@media only screen and (min-width: 600px) {
+  body {
+    font-size: 18px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin: 10px 0px;
+  }
+  
+  h2 {
+    font-size: 1.4rem;
+    margin: 10px 0px;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+    margin: 10px 0px;
+  }
+
+  .user-navigation {
+    padding: 0px 25px;
+  }
+  .reviews-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    width: 90%
+  }
+  
+  .review-card {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    width: 100%;
+  }
+
+  .review-card_details {
+    margin-top: 20px;
+    width: 55%;
+  }
+  
+  .review-card_img {
+    height: 30%;
+    margin: 20px;
+    width: 30%;
+  }
+
+  .review-card_statistics {
+    font-size: 15px;
+    margin-left: 120px;
+  }
+  
+  .review-card_statistics img{
+    height: 20px;
+    margin: 11px;
+    width: 20px;
+  }
+
+  /* Review Page */
+
+  .review-page {
+    margin: 15px auto;
+    width: 75vw;
+  }
+
+  .review-page_img {
+    margin: 15px 10%;
+    width: 80%;
+  }
+
+  .review-page_content {
+    text-align: left;
+    margin: 0px auto;
+    width: 90%;
+  }
+
+  .review-page_post-details {
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+  }
+
+  .review-page_post-content {
+    padding: 8px;
+  }
+
+  .review-page_review-owner p {
+    margin-bottom: 4px;
+  }
+
+  .review-page_review-statistics {
+    align-items: flex-end;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    font-size: 10px;
+    margin-right: -50px;
+  }
+
+  .review-page_review-statistics img{
+    height: 16px;
+    margin: 8px;
+    width: 16px;
+  }
+
+  .review-page_reactions {
+    text-align: center;
+  }
+
+  .review-page_reactions button {
+    margin: 10px 15px;
+  }
+
+  .review-page_reactions p {
+    text-align: center;
+  }
 }

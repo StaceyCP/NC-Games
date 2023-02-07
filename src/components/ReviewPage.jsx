@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getReviewById, updateReviewById } from "../api";
 import Comments from "./Comments";
 import Loading from "./Loading";
+import Modal from "./Modal";
 
 const commentIcon = require('../assets/chat.png');
 const likeIcon = require('../assets/heart.png');
@@ -11,6 +12,7 @@ function ReviewPage() {
     const [review, setReview] = useState({});
     const [voteCount, setVoteCount] = useState('')
     const [reviewLoading, setReviewLoading] = useState(true);
+    const [error, setError] = useState('');
     const configuredDate = new Date(review.created_at).toDateString()
     const {review_id} = useParams();
     useEffect(() => {
@@ -21,7 +23,6 @@ function ReviewPage() {
         })
     }, [review_id])
     
-    console.log(voteCount)
     let vote = {
         inc_votes: 1
     }
@@ -31,10 +32,12 @@ function ReviewPage() {
         updateReviewById(review_id, vote).then((updatedReviewFromAPI) => {
             setVoteCount(updatedReviewFromAPI[0].votes)
             return updatedReviewFromAPI
+        }).catch(err => {
+            setError("Something went wrong! Try again in a moment");
         })
     }
-
-    if (!reviewLoading) {
+    console.log(error)
+    if (!reviewLoading && error === '') {
         return (
             <main className="review-page">
                 <section className="review-page_content">
@@ -59,13 +62,13 @@ function ReviewPage() {
                     <hr></hr>
                     <div className="review-page_reactions">
                         <h3>Did you like this review?</h3>
-                        <button className="review-page_reaction love" type="button" onClick={() => {
+                        <button className="review-page_reaction love" type="button" aria-label="Add 2 to the review impressions" onClick={() => {
                             handleVote(2)
                             }}>Love</button>
-                        <button className="reaction-page_reaction like" type="button" onClick={() => {
+                        <button className="reaction-page_reaction like" type="button" aria-label="Add 1 to the review impressions" onClick={() => {
                             handleVote(1)
                             }}>Like</button>
-                        <button className="reaction-page_reaction dislike" type="button" onClick={() => {
+                        <button className="reaction-page_reaction dislike" type="button" aria-label="Remove 1 from the review impressions" onClick={() => {
                             handleVote(-1)
                             }}>Dislike</button>
                         <p>{voteCount} impressions</p>
@@ -75,6 +78,8 @@ function ReviewPage() {
                 <Comments/>
             </main>
         );
+    } else if (error !== '') {
+        return <Modal text={error}/>
     } else {
         return <Loading component={"Review"}/>
     }

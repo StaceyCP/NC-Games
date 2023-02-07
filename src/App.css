@@ -135,7 +135,6 @@ h3 {
   justify-content: center;
   flex-direction: row;
   font-size: 10px;
-  margin-right: -50px;
 }
 
 .review-page_review-statistics img{
@@ -154,6 +153,49 @@ h3 {
 
 .review-page_reactions p {
   text-align: center;
+}
+
+/* ReviewPage - Comments */
+
+.comments-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.comments-container_list {
+  text-align: left;  
+  width: 90%;
+}
+
+.comment-container_item {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.comment-container_item-details {
+  width: 70%;
+}
+
+.comment-container_item-timestamp {
+  margin-top: -15px;
+}
+
+.comment-container_statistics {
+  align-items: flex-end;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  font-size: 14px;
+}
+
+.comment-container_statistics img{
+  height: 20px;
+  margin: 11px;
+  width: 20px;
 }
 
 /* Media queries */
@@ -277,4 +319,7 @@ h3 {
   .review-page_reactions p {
     text-align: center;
   }
+
+  /* ReviewPage - Comments */
+
 }

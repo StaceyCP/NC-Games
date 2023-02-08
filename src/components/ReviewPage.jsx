@@ -68,23 +68,26 @@ function ReviewPage() {
                         <h3>Did you like this review?</h3>
                         {error !== '' && showModal === true && <Modal text={error} setShowModal={setShowModal}/>}
                         <button className="reaction-page_reaction like" type="button" aria-label="Add 1 to the review likes" onClick={() => {
-                            setReactionCount(reactionCount + 1);
                             if (reactionCount === 0) {
+                                setReactionCount(reactionCount + 1);
                                 handleVote(1);
                                 document.querySelector(".like").classList.add('reacted')
                             } else {
-                                setShowModal(true);
+                                setReactionCount(reactionCount - 1);
+                                handleVote(-1);
+                                document.querySelector(".like").classList.remove('reacted')
                             }}}></button>
                         <button className="reaction-page_reaction dislike" type="button" aria-label="Remove 1 from the review likes" onClick={() => {
-                            setReactionCount(reactionCount + 1);
                             if (reactionCount === 0) {
+                                setReactionCount(reactionCount + 1);
                                 handleVote(-1);
                                 document.querySelector(".dislike").classList.add('reacted')
                             } else {
-                                setShowModal(true);
+                                setReactionCount(reactionCount - 1);
+                                handleVote(1);
+                                document.querySelector(".dislike").classList.remove('reacted')
                             }}}></button>
                         <p>{voteCount} likes</p>
-                        {reactionCount > 1 && showModal && <Modal text={"Whoops! Sorry, you can only react once"} setShowModal={setShowModal}/>}
                     </div>
                     <hr></hr>
                 </section>

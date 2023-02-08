@@ -24,3 +24,13 @@ export const getReviewComments = (review_id) => {
         return data.comments
     })
 }
+
+
+
+// Server POST requests
+
+export const postComment = (review_id, newComment) => {
+    return ncGamesApi.post(`/reviews/${review_id}/comments`, newComment).then(({data}) => {
+        return data.newComment;
+    })
+}

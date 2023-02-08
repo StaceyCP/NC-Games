@@ -180,8 +180,11 @@ h3 {
   width: 70%;
 }
 
-.comment-container_item-timestamp {
-  margin-top: -15px;
+.comment-date{
+  color: rgb(227, 224, 224);
+  font-size: 0.7em;
+  font-weight: normal;
+  margin-left: 5px;
 }
 
 .comment-container_statistics {

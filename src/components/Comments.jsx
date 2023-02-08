@@ -24,8 +24,7 @@ function Comments() {
                     return <article key={comment.comment_id} className='comments-container_list'>
                         <div className='comment-container_item'>
                             <div className='comment-container_item-details'>
-                                <h4 className='comment-container_item-author'>{comment.author}</h4>
-                                <p className='comment-container_item-timestamp'>{configureDate(comment.created_at)}</p>
+                                <h4 className='comment-container_item-author'>{comment.author} <span className='comment-date'>{configureDate(comment.created_at)}</span></h4>
                                 <p className='comment-container_item-comment'>{comment.body}</p>
                             </div>
                             <div className='comment-container_statistics'>
@@ -33,7 +32,6 @@ function Comments() {
                                 <img src={likeIcon} alt="heart icon"></img>
                             </div>
                         </div>
-                        <hr className='comment-divider'></hr>
                     </article>
                 })}
             </section>

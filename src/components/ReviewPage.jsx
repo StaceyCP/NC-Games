@@ -91,7 +91,7 @@ function ReviewPage() {
                     </div>
                     <hr></hr>
                 </section>
-                <Comments/>
+                <Comments setError={setError} setShowModal={setShowModal}/>
             </main>
         );
     } else {

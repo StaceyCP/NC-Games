@@ -1,14 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { getReviewComments } from "../api";
+import { deleteCommentById, getReviewComments } from "../api";
+import { LoggedInContext } from '../contexts/LoggedIn';
 import Loading from './Loading';
 
 const likeIcon = require('../assets/thumbs-up.png');
-function Comments() {
+function Comments({setError, setShowModal}) {
     const {review_id} = useParams();
-
+    const {loggedInUser} = useContext(LoggedInContext);
     const [comments, setComments] = useState([]);
     const [commentsLoading, setCommentsLoading] = useState(true);
+
+    const handleDelete = (comment_id) => {
+        deleteCommentById(comment_id).then(() => {
+            setComments(currComments => currComments.filter((comment) => comment.comment_id !== comment_id ))
+        })
+        .catch(err => {
+            setError("Oh no! Something went wrong, please try again in a moment")
+            setShowModal(true)
+        })
+    }
 
     const configureDate = (timestamp) =>  new Date(timestamp).toDateString()
     useEffect(() => {
@@ -35,6 +46,9 @@ function Comments() {
                                 <p>{votes}</p>
                                 <img src={likeIcon} alt="Thumbs up"></img>
                             </div>
+                            {loggedInUser.username === author && <button className='comment-delete' type='button' onClick={() => {
+                                handleDelete(comment_id)
+                                }}>Delete</button>}
                         </div>
                         <hr className='comment-divider'></hr>
                     </article>

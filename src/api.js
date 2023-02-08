@@ -32,3 +32,11 @@ export const updateReviewById = (review_id, review_update) => {
         return data.updatedReview;
     })
 }
+
+// Server DELETE requests
+
+export const deleteCommentById = (comment_id) => {
+    return ncGamesApi.delete(`/comments/${comment_id}`).then(() => {
+        console.log('deleted comment');
+    })
+}

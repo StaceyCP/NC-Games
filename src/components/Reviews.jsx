@@ -1,10 +1,21 @@
-import { useContext } from "react";
-import { ReviewsContext } from "../contexts/ReviewsContext";
 import ReviewCard from "./ReviewCard";
 import Loading from "./Loading";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getReviews } from "../api";
 
 function Reviews() {
-    const {reviews, setReviews, reviewsLoading, setReviewsLoading} = useContext(ReviewsContext)
+    const {category} = useParams()
+    console.log(category)
+    const [reviews, setReviews] = useState([]);
+    const [reviewsLoading, setReviewsLoading] = useState(true)
+        useEffect(() => {
+            getReviews(category).then((reviews) => {
+                setReviews(reviews)
+                setReviewsLoading(false)
+            })
+        }, [category])
+
     if (!reviewsLoading) {
         return (
             <section className="reviews-container">

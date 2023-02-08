@@ -14,7 +14,7 @@ function ReviewPage() {
     const [reviewLoading, setReviewLoading] = useState(true);
     const [error, setError] = useState('');
     const [showModal, setShowModal] = useState(false)
-    const [reacted, setReacted] = useState(false);
+    const [reactionCount, setReactionCount] = useState(0);
 
     const configuredDate = new Date(review.created_at).toDateString()
     const {review_id} = useParams();
@@ -68,19 +68,23 @@ function ReviewPage() {
                         <h3>Did you like this review?</h3>
                         {error !== '' && showModal === true && <Modal text={error} setShowModal={setShowModal}/>}
                         <button className="reaction-page_reaction like" type="button" aria-label="Add 1 to the review likes" onClick={() => {
-                            if (!reacted) {
+                            setReactionCount(reactionCount + 1);
+                            if (reactionCount === 0) {
                                 handleVote(1);
-                                setReacted(true);
+                                document.querySelector(".like").classList.add('reacted')
+                            } else {
                                 setShowModal(true);
                             }}}></button>
                         <button className="reaction-page_reaction dislike" type="button" aria-label="Remove 1 from the review likes" onClick={() => {
-                            if (!reacted) {
+                            setReactionCount(reactionCount + 1);
+                            if (reactionCount === 0) {
                                 handleVote(-1);
-                                setReacted(true);
+                                document.querySelector(".dislike").classList.add('reacted')
+                            } else {
                                 setShowModal(true);
                             }}}></button>
                         <p>{voteCount} likes</p>
-                        {reacted && showModal && <Modal text={"Whoops! Sorry, you can only react once"} setShowModal={setShowModal}/>}
+                        {reactionCount > 1 && showModal && <Modal text={"Whoops! Sorry, you can only react once"} setShowModal={setShowModal}/>}
                     </div>
                     <hr></hr>
                 </section>

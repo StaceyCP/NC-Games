@@ -169,6 +169,10 @@ h3 {
   transform: scale(1.2);
 }
 
+.reacted {
+  background-image: url('../src/assets/thumbs-up-active.png');
+}
+
 .dislike {
   transform: rotate(180deg);
 }

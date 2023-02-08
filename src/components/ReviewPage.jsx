@@ -1,21 +1,46 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getReviewById } from "../api";
+import { getReviewById, updateReviewById } from "../api";
 import Comments from "./Comments";
+import Loading from "./Loading";
+import Modal from "./Modal"
+
 const commentIcon = require('../assets/chat.png');
-const likeIcon = require('../assets/heart.png');
+const likeIcon = require('../assets/thumbs-up.png');
 
 function ReviewPage() {
     const [review, setReview] = useState({});
+    const [voteCount, setVoteCount] = useState('')
     const [reviewLoading, setReviewLoading] = useState(true);
+    const [error, setError] = useState('');
+    const [showModal, setShowModal] = useState(false)
+    const [reactionCount, setReactionCount] = useState(0);
+
+    const configuredDate = new Date(review.created_at).toDateString()
     const {review_id} = useParams();
     useEffect(() => {
         getReviewById(review_id).then(reviewFromAPI => {
             setReview(reviewFromAPI[0])
             setReviewLoading(false)
+            setVoteCount(reviewFromAPI[0].votes)
         })
     }, [review_id])
-    const configuredDate = new Date(review.created_at).toDateString()
+    
+    let vote = {
+        inc_votes: 1
+    }
+ 
+    const handleVote = (num) => {
+        vote.inc_votes = num
+        setVoteCount(voteCount + num)
+        updateReviewById(review_id, vote).then((updatedReviewFromAPI) => {
+            return updatedReviewFromAPI
+        }).catch(err => {
+            setShowModal(true);
+            setError("Whoops something went wrong! Please try again shortly");
+        })
+    }
+
     if (!reviewLoading) {
         return (
             <main className="review-page">
@@ -28,7 +53,7 @@ function ReviewPage() {
                             <p>by {review.owner}</p>
                         </div>
                         <div className="review-page_review-statistics">
-                            <p>{review.votes}</p>
+                            <p>{voteCount}</p>
                             <img src={likeIcon} alt="heart icon"></img>
                             <p>{review.comment_count}</p>
                             <img src={commentIcon} alt="speach bubble icon"></img>
@@ -41,10 +66,28 @@ function ReviewPage() {
                     <hr></hr>
                     <div className="review-page_reactions">
                         <h3>Did you like this review?</h3>
-                        <button className="review-page_reaction love" type="button">Love</button>
-                        <button className="reaction-page_reaction like" type="button">Like</button>
-                        <button className="reaction-page_reaction dislike" type="button">Dislike</button>
-                        <p>{review.votes} impressions</p>
+                        {error !== '' && showModal === true && <Modal text={error} setShowModal={setShowModal}/>}
+                        <button className="reaction-page_reaction like" type="button" aria-label="Add 1 to the review likes" onClick={() => {
+                            if (reactionCount === 0) {
+                                setReactionCount(reactionCount + 1);
+                                handleVote(1);
+                                document.querySelector(".like").classList.add('reacted')
+                            } else {
+                                setReactionCount(reactionCount - 1);
+                                handleVote(-1);
+                                document.querySelector(".like").classList.remove('reacted')
+                            }}}></button>
+                        <button className="reaction-page_reaction dislike" type="button" aria-label="Remove 1 from the review likes" onClick={() => {
+                            if (reactionCount === 0) {
+                                setReactionCount(reactionCount + 1);
+                                handleVote(-1);
+                                document.querySelector(".dislike").classList.add('reacted')
+                            } else {
+                                setReactionCount(reactionCount - 1);
+                                handleVote(1);
+                                document.querySelector(".dislike").classList.remove('reacted')
+                            }}}></button>
+                        <p>{voteCount} likes</p>
                     </div>
                     <hr></hr>
                 </section>
@@ -52,7 +95,7 @@ function ReviewPage() {
             </main>
         );
     } else {
-        return <h2>Review is loading...</h2>
+        return <Loading component={"Review"}/>
     }
 }
 

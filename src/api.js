@@ -40,3 +40,9 @@ export const updateReviewById = (review_id, review_update) => {
         return data.updatedReview;
     })
 }
+
+export const updateCommentById = (comment_id, comment_update) => {
+    return ncGamesApi.patch(`/comments/${comment_id}`, comment_update).then(({data}) => {
+        return data.updatedComment;
+    })
+}

@@ -3,16 +3,19 @@ import { useParams } from "react-router-dom";
 import { getReviewById, updateReviewById } from "../api";
 import Comments from "./Comments";
 import Loading from "./Loading";
-import Modal from "./Modal";
+import Modal from "./Modal"
 
 const commentIcon = require('../assets/chat.png');
-const likeIcon = require('../assets/heart.png');
+const likeIcon = require('../assets/thumbs-up.png');
 
 function ReviewPage() {
     const [review, setReview] = useState({});
     const [voteCount, setVoteCount] = useState('')
     const [reviewLoading, setReviewLoading] = useState(true);
     const [error, setError] = useState('');
+    const [showModal, setShowModal] = useState(false)
+    const [reacted, setReacted] = useState(false);
+
     const configuredDate = new Date(review.created_at).toDateString()
     const {review_id} = useParams();
     useEffect(() => {
@@ -29,15 +32,16 @@ function ReviewPage() {
  
     const handleVote = (num) => {
         vote.inc_votes = num
+        setVoteCount(voteCount + num)
         updateReviewById(review_id, vote).then((updatedReviewFromAPI) => {
-            setVoteCount(updatedReviewFromAPI[0].votes)
             return updatedReviewFromAPI
         }).catch(err => {
-            setError("Something went wrong! Try again in a moment");
+            setShowModal(true);
+            setError("Whoops something went wrong! Please try again shortly");
         })
     }
-    console.log(error)
-    if (!reviewLoading && error === '') {
+
+    if (!reviewLoading) {
         return (
             <main className="review-page">
                 <section className="review-page_content">
@@ -62,24 +66,27 @@ function ReviewPage() {
                     <hr></hr>
                     <div className="review-page_reactions">
                         <h3>Did you like this review?</h3>
-                        <button className="review-page_reaction love" type="button" aria-label="Add 2 to the review impressions" onClick={() => {
-                            handleVote(2)
-                            }}>Love</button>
-                        <button className="reaction-page_reaction like" type="button" aria-label="Add 1 to the review impressions" onClick={() => {
-                            handleVote(1)
-                            }}>Like</button>
-                        <button className="reaction-page_reaction dislike" type="button" aria-label="Remove 1 from the review impressions" onClick={() => {
-                            handleVote(-1)
-                            }}>Dislike</button>
-                        <p>{voteCount} impressions</p>
+                        {error !== '' && showModal === true && <Modal text={error} setShowModal={setShowModal}/>}
+                        <button className="reaction-page_reaction like" type="button" aria-label="Add 1 to the review likes" onClick={() => {
+                            if (!reacted) {
+                                handleVote(1);
+                                setReacted(true);
+                                setShowModal(true);
+                            }}}></button>
+                        <button className="reaction-page_reaction dislike" type="button" aria-label="Remove 1 from the review likes" onClick={() => {
+                            if (!reacted) {
+                                handleVote(-1);
+                                setReacted(true);
+                                setShowModal(true);
+                            }}}></button>
+                        <p>{voteCount} likes</p>
+                        {reacted && showModal && <Modal text={"Whoops! Sorry, you can only react once"} setShowModal={setShowModal}/>}
                     </div>
                     <hr></hr>
                 </section>
                 <Comments/>
             </main>
         );
-    } else if (error !== '') {
-        return <Modal text={error}/>
     } else {
         return <Loading component={"Review"}/>
     }

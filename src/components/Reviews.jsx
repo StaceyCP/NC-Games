@@ -6,7 +6,6 @@ import { getReviews } from "../api";
 
 function Reviews() {
     const {category} = useParams()
-    console.log(category)
     const [reviews, setReviews] = useState([]);
     const [reviewsLoading, setReviewsLoading] = useState(true)
         useEffect(() => {

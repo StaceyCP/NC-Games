@@ -25,12 +25,18 @@ export const getReviewComments = (review_id) => {
     })
 }
 
-
-
 // Server POST requests
 
 export const postComment = (review_id, newComment) => {
     return ncGamesApi.post(`/reviews/${review_id}/comments`, newComment).then(({data}) => {
         return data.newComment;
+    })
+}
+
+// Server PATCH requests
+
+export const updateReviewById = (review_id, review_update) => {
+    return ncGamesApi.patch(`/reviews/${review_id}`, review_update).then(({data}) => {
+        return data.updatedReview;
     })
 }

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const commentIcon = require('../assets/chat.png');
-const likeIcon = require('../assets/heart.png');
+const likeIcon = require('../assets/thumbs-up.png');
 function ReviewCard({ review }) {
     const text = review.review_body
     const flavourText = text.substring(0, 100);

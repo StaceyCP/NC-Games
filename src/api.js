@@ -64,5 +64,7 @@ export const postComment = (review_id, newComment) => {
 // Server DELETE requests
 
 export const deleteCommentById = (comment_id) => {
-    return ncGamesApi.delete(`/comments/${comment_id}`)
+    return ncGamesApi.delete(`/comments/${comment_id}`).then(() => {
+        return 
+    }) 
 }

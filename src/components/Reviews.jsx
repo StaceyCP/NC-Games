@@ -1,15 +1,16 @@
 import ReviewCard from "./ReviewCard";
 import Loading from "./Loading";
-import { useEffect, useState } from "react";
-import { getReviews } from "../api";
 import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { getReviews } from "../api";
+import { ErrorContext } from "../contexts/Error";
 
 function Reviews() {
     const [reviews, setReviews] = useState([]);
     const [reviewsLoading, setReviewsLoading] = useState(true)
     const [sort_by, setSort_by] = useState()
     const [order, setOrder] = useState()
-    
+    const {error, setError} = useContext(ErrorContext);
     const {category} = useParams()
 
     const handleSort = (e) => {
@@ -18,12 +19,16 @@ function Reviews() {
 
     useEffect(() => {
         getReviews(category, sort_by, order).then((reviews) => {
+            setError('')
             setReviews(reviews)
             setReviewsLoading(false)
+        }).catch(err => {
+            setReviewsLoading(false)
+            setError("404 Category not found")
         })
-    }, [category, sort_by, order])
+    }, [category, sort_by, order, setError])
 
-    if (!reviewsLoading) {
+    if (!reviewsLoading && error === '') {
         return (
             <section className="reviews-container">
                 <h2>Reviews</h2>
@@ -52,6 +57,8 @@ function Reviews() {
                 })}
             </section>
         );
+    } else if (!reviewsLoading && error !== '') {
+        return <h2>{error}</h2>
     } else {
         return <Loading component={"Reviews"}/>
     }

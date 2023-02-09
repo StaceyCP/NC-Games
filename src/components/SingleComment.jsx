@@ -2,8 +2,10 @@ import { updateCommentById } from "../api"
 import { useState, useContext } from 'react';
 import { deleteCommentById } from "../api";
 import { LoggedInContext } from '../contexts/LoggedIn';
+import { ErrorContext } from "../contexts/Error"
 
-function SingleComment({comment_id, author, body, created_at, votes, setError, setShowModal, setComments, commentCount, setCommentCount}) {
+function SingleComment({comment_id, author, body, created_at, votes, setComments, commentCount, setCommentCount}) {
+    const {setError, setShowModal} = useContext(ErrorContext)
     const {loggedInUser} = useContext(LoggedInContext);
     let vote = {
         inc_votes: 1

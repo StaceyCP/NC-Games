@@ -64,6 +64,10 @@ h3 {
   text-transform: uppercase;
 }
 
+.error-msg {
+  margin: 20px;
+}
+
 /* Reviews */
 
 .reviews-container {

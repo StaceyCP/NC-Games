@@ -22,6 +22,7 @@ function App() {
           element={<ReviewPage/>}
         >
         </Route>
+        <Route path='*' exact={true} element={<h2 className="error-msg">404 Sorry the requested url doesn't exist</h2>} />
       </Routes>
     </div>
   );

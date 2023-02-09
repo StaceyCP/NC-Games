@@ -26,19 +26,25 @@ function Reviews() {
         return (
             <section className="reviews-container">
                 <h2>Reviews</h2>
-                <label htmlFor="sort_by"></label>
+                {category && <h3>Showing all reviews for {category}</h3>}
+                <label htmlFor="sort_by">Sort By: </label>
                 <select id="sort_by" onChange={handleSort}>
                     <option defaultValue value="created_at">date</option>
                     <option value="comment_count">comments</option>
                     <option value="votes">likes</option>
                 </select>
-                <button type="button" onClick={() => {
-                    setOrder("asc")
-                }}>Ascending</button>
-                <button type="button" onClick={() => {
-                    setOrder("desc")
-                }}>Descending</button>
-                {category && <h3>Showing all reviews for {category}</h3>}
+                <div className="sort-btn_container">
+                    <button className="sort-btn asc" type="button" onClick={() => {
+                        setOrder("asc")
+                        document.querySelector(".asc").classList.add("active")
+                        document.querySelector(".desc").classList.remove("active")
+                    }}>Ascending</button>
+                    <button className="sort-btn desc" type="button" onClick={() => {
+                        setOrder("desc")
+                        document.querySelector(".desc").classList.add("active")
+                        document.querySelector(".asc").classList.remove("active")
+                    }}>Descending</button>
+                </div>
                 <hr></hr>
                 {reviews.map(review => {
                     return <ReviewCard key={review.review_id} review={review}/>

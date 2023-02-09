@@ -19,6 +19,7 @@ function Reviews() {
         return (
             <section className="reviews-container">
                 <h2>Reviews</h2>
+                {category && <h3>Showing all reviews for {category}</h3>}
                 <hr></hr>
                 {reviews.map(review => {
                     return <ReviewCard key={review.review_id} review={review}/>

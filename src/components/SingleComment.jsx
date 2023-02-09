@@ -23,8 +23,7 @@ function SingleComment({comment_id, author, body, created_at, votes, setError, s
     const handleDelete = (comment_id) => {
         deleteCommentById(comment_id).then(() => {
             setComments(currComments => currComments.filter((comment) => comment.comment_id !== comment_id ))
-            let newCommentCount = (commentCount + 1)
-            setCommentCount(newCommentCount)
+            setCommentCount(commentCount - 1)
         })
         .catch(err => {
             setError("Oh no! Something went wrong, please try again in a moment")

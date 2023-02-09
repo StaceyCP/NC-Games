@@ -28,8 +28,7 @@ function CommentAdd({review_id, setError, setShowModal, setComments, commentCoun
             postComment(review_id, commentToAdd).then((newCommentFromAPI) => {
                 setComments((currentComments) => [newCommentFromAPI[0], ...currentComments]);
                 setCommentBody('')
-                let newCommentCount = (commentCount + 1)
-                setCommentCount(newCommentCount)
+                setCommentCount(commentCount + 1)
             }).catch(err => {
                 console.log(err);
                 setError("Something went wrong please try again shortly");

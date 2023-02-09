@@ -25,9 +25,9 @@ function ReviewPage() {
             setReview(reviewFromAPI[0])
             setReviewLoading(false)
             setVoteCount(reviewFromAPI[0].votes)
-            setCommentCount(reviewFromAPI[0].comment_count)
+            setCommentCount(Number(reviewFromAPI[0].comment_count))
         })
-    }, [review_id, commentCount])
+    }, [review_id])
     
     let vote = {
         inc_votes: 1

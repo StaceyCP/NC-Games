@@ -39,7 +39,7 @@ function Reviews() {
                         document.querySelector(".asc").classList.add("active")
                         document.querySelector(".desc").classList.remove("active")
                     }}>Ascending</button>
-                    <button className="sort-btn desc" type="button" onClick={() => {
+                    <button className="sort-btn desc active" type="button" onClick={() => {
                         setOrder("desc")
                         document.querySelector(".desc").classList.add("active")
                         document.querySelector(".asc").classList.remove("active")

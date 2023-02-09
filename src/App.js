@@ -14,6 +14,10 @@ function App() {
           element={<ReviewsHome/>}>
         </Route>
         <Route 
+          path='/:category' 
+          element={<ReviewsHome/>}>
+        </Route>
+        <Route 
           path='/reviews/:review_id'
           element={<ReviewPage/>}
         >

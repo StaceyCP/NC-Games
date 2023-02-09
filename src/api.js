@@ -7,8 +7,19 @@ const ncGamesApi = axios.create({
 
 // Server GET requests 
 
-export const getReviews = () => {
-    return ncGamesApi.get('/reviews').then(({ data }) => {
+export const getCategories = () => {
+    return ncGamesApi.get('/categories').then(({data}) => {
+        return data;
+    })
+}
+
+export const getReviews = (category) => {
+
+    return ncGamesApi.get('/reviews', {
+        params: {
+            category: category
+        }
+    }).then(({ data }) => {
         return data.reviews
     })
 }

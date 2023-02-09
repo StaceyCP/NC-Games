@@ -12,7 +12,7 @@ function ReviewCard({ review }) {
             <article className="review-card">
                 <img src={review.review_img_url} className="review-card_img" alt={`The game relating to the review ${review.title}`}></img>
                 <div className="review-card_details">
-                    <h3 className="review-card_title"><Link to={`/reviews/${review.review_id}`}>{review.title}</Link></h3>
+                    <h3><Link className="review-card_title" to={`/reviews/${review.review_id}`}>{review.title}</Link></h3>
                     <p className="review-card_flavour-text">{flavourText}... <span><Link to={`/reviews/${review.review_id}`}>Read More</Link></span></p>
                     <p className="review-card_date-posted">{configuredDate} by <span>{review.owner}</span></p>
                 </div>

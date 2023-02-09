@@ -13,7 +13,7 @@ function CategoryNav() {
     return (
         <div className="category-navigation">
             {categories.map(({slug}) => {
-                return <span className="category-link" key={slug}><Link to={`/${slug}`}>{slug}</Link></span>
+                return <span key={slug}><Link className="category-link" to={`/${slug}`}>{slug}</Link></span>
             })}
         </div>
     );

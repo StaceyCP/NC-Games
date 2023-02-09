@@ -13,6 +13,7 @@ body {
 
 h1 {
   font-size: 1.4rem;
+  text-transform: uppercase;
   margin: 10px 0px;
 }
 
@@ -42,10 +43,17 @@ h3 {
   justify-content: space-between;
 }
 
+.app-title_link {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
 .user-navigation_links {
   display: flex;
   flex-direction: row;
   list-style: none;
+  color: whitesmoke;
 }
 
 .user-navigation_links li {
@@ -53,15 +61,22 @@ h3 {
 }
 
 .category-navigation {
-  background-color: rgb(127, 255, 178);
+  background-color: #191919;
   padding: 10px;
 }
 
 .category-link {
+  color: whitesmoke;
   margin: 0 10px;
   font-size: 15px;
   font-weight: normal;
   text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+.category-link:hover {
+  color: rgb(127, 255, 178);
 }
 
 .error-msg {
@@ -99,6 +114,18 @@ h3 {
 .review-card {
   flex-direction: column;
   margin: 20px;
+}
+
+.review-card_title {
+  color: whitesmoke;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+
+.review-card_title:hover {
+  color: rgb(127, 255, 178);
 }
 
 .review-card_img {
@@ -407,7 +434,7 @@ h3 {
 
   .sort-btn {
     all: unset;
-    background-color: rgb(127, 255, 178);
+    background-color: whitesmoke;
     border-radius: 25px;
     color: #191919;
     cursor: pointer;
@@ -420,7 +447,7 @@ h3 {
   }
 
   .active {
-    background-color: whitesmoke;
+    background-color: rgb(127, 255, 178);
   }
   
   .review-card {

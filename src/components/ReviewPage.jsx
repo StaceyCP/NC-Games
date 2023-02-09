@@ -14,7 +14,8 @@ function ReviewPage() {
     const [reviewLoading, setReviewLoading] = useState(true);
     const [error, setError] = useState('');
     const [showModal, setShowModal] = useState(false)
-    const [reactionCount, setReactionCount] = useState(0);
+    const [likeReaction, setLikeReaction] = useState(false);
+    const [dislikeReaction, setDislikeReaction] = useState(false);
 
     const configuredDate = new Date(review.created_at).toDateString()
     const {review_id} = useParams();
@@ -68,22 +69,22 @@ function ReviewPage() {
                         <h3>Did you like this review?</h3>
                         {error !== '' && showModal === true && <Modal text={error} setShowModal={setShowModal}/>}
                         <button className="reaction-page_reaction like" type="button" aria-label="Add 1 to the review likes" onClick={() => {
-                            if (reactionCount === 0) {
-                                setReactionCount(reactionCount + 1);
+                            if (!likeReaction && !dislikeReaction) {
+                                setLikeReaction(true);
                                 handleVote(1);
                                 document.querySelector(".like").classList.add('reacted')
-                            } else {
-                                setReactionCount(reactionCount - 1);
+                            } else if (likeReaction) {
+                                setLikeReaction(false);
                                 handleVote(-1);
                                 document.querySelector(".like").classList.remove('reacted')
                             }}}></button>
                         <button className="reaction-page_reaction dislike" type="button" aria-label="Remove 1 from the review likes" onClick={() => {
-                            if (reactionCount === 0) {
-                                setReactionCount(reactionCount + 1);
+                            if (!likeReaction && !dislikeReaction) {
+                                setDislikeReaction(true);
                                 handleVote(-1);
                                 document.querySelector(".dislike").classList.add('reacted')
-                            } else {
-                                setReactionCount(reactionCount - 1);
+                            } else if (dislikeReaction){
+                                setDislikeReaction(false);
                                 handleVote(1);
                                 document.querySelector(".dislike").classList.remove('reacted')
                             }}}></button>

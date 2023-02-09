@@ -40,7 +40,7 @@ function CommentAdd({review_id, setError, setShowModal, setComments}) {
     return (
         <form onSubmit={handleSubmit} className='add-comment-form'>
             <img className="user-image" src={loggedInUser.avatar_url} alt="Users profile"></img>
-            <input className="add-comment-input" type="text-area" value={commentBody} onChange={handleChange} placeholder="Write your comment here..." required></input>
+            <textarea className="add-comment-input" value={commentBody} onChange={handleChange} placeholder="Write your comment here..." rows="1"></textarea>
             <button className="add-comment-btn" disabled={isCommentAddDisabled}>Comment</button>
         </form>
     );

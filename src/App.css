@@ -18,7 +18,6 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2rem;
   margin: 10px 0px;
 }
 
@@ -49,15 +48,17 @@ h3 {
   text-decoration: none;
 }
 
-.user-navigation_links {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  color: whitesmoke;
+.user-information_avatar {
+  background-color: whitesmoke;
+  border-radius: 50%;
+  height: 50px;
+  margin-top: 20px;
+  width: 50px;
 }
 
-.user-navigation_links li {
-  margin: 15px;
+.user-information_username {
+  font-size: 16px;
+  margin-top: 3px;
 }
 
 .category-navigation {
@@ -397,8 +398,8 @@ h3 {
   }
   
   h2 {
-    font-size: 1.4rem;
-    margin: 10px 0px;
+    font-size: 2rem;
+    margin: 25px 0px;
   }
   
   h3 {

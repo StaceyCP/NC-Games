@@ -31,7 +31,7 @@ function Reviews() {
     if (!reviewsLoading && error === '') {
         return (
             <section className="reviews-container">
-                <h2>Reviews</h2>
+                <h2 className="reviews-heading">Reviews</h2>
                 {category && <h3>Showing all reviews for {category}</h3>}
                 <label htmlFor="sort_by">Sort By: </label>
                 <select id="sort_by" onChange={handleSort}>

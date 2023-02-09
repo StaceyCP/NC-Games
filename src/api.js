@@ -20,7 +20,6 @@ export const getReviews = (category, sort_by, order) => {
     })
 }
 
-
 export const getCategories = () => {
     return ncGamesApi.get('/categories').then(({data}) => {
         return data;
@@ -36,6 +35,18 @@ export const getReviewById = (review_id) => {
 export const getReviewComments = (review_id) => {
     return ncGamesApi.get(`/reviews/${review_id}/comments`).then(({data}) => {
         return data.comments
+    })
+}
+
+export const getUsers = () => {
+    return ncGamesApi.get('/users').then(({data}) => {
+        return data.users
+    })
+}
+
+export const getUserByUsername = (username) => {
+    return ncGamesApi.get(`/users/${username}`).then(({data}) => {
+        return data.user
     })
 }
 

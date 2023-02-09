@@ -7,8 +7,14 @@ const ncGamesApi = axios.create({
 
 // Server GET requests 
 
-export const getReviews = () => {
-    return ncGamesApi.get('/reviews').then(({ data }) => {
+export const getReviews = (sort_by, order) => {
+
+    return ncGamesApi.get('/reviews', {
+        params: {
+            sort_by,
+            order
+        }
+    }).then(({ data }) => {
         return data.reviews
     })
 }

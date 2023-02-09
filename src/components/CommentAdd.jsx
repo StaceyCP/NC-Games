@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { postComment } from "../api";
 import { LoggedInContext } from "../contexts/LoggedIn";
 
-function CommentAdd({review_id, setError, setShowModal, setComments}) {
+function CommentAdd({review_id, setError, setShowModal, setComments, commentCount, setCommentCount}) {
     const {isLoggedIn, loggedInUser} = useContext(LoggedInContext);
     const [commentBody, setCommentBody] = useState('')
     const [isCommentAddDisabled, setIsCommentAddDisabled] = useState(true)
@@ -28,6 +28,8 @@ function CommentAdd({review_id, setError, setShowModal, setComments}) {
             postComment(review_id, commentToAdd).then((newCommentFromAPI) => {
                 setComments((currentComments) => [newCommentFromAPI[0], ...currentComments]);
                 setCommentBody('')
+                let newCommentCount = (commentCount + 1)
+                setCommentCount(newCommentCount)
             }).catch(err => {
                 console.log(err);
                 setError("Something went wrong please try again shortly");

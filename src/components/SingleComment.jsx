@@ -3,7 +3,7 @@ import { useState, useContext } from 'react';
 import { deleteCommentById } from "../api";
 import { LoggedInContext } from '../contexts/LoggedIn';
 
-function SingleComment({comment_id, author, body, created_at, votes, setError, setShowModal, setComments}) {
+function SingleComment({comment_id, author, body, created_at, votes, setError, setShowModal, setComments, commentCount, setCommentCount}) {
     const {loggedInUser} = useContext(LoggedInContext);
     let vote = {
         inc_votes: 1
@@ -23,6 +23,8 @@ function SingleComment({comment_id, author, body, created_at, votes, setError, s
     const handleDelete = (comment_id) => {
         deleteCommentById(comment_id).then(() => {
             setComments(currComments => currComments.filter((comment) => comment.comment_id !== comment_id ))
+            let newCommentCount = (commentCount + 1)
+            setCommentCount(newCommentCount)
         })
         .catch(err => {
             setError("Oh no! Something went wrong, please try again in a moment")

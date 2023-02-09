@@ -2,23 +2,26 @@ import ReviewCard from "./ReviewCard";
 import Loading from "./Loading";
 import { useEffect, useState } from "react";
 import { getReviews } from "../api";
-
+import { useParams } from "react-router-dom";
 
 function Reviews() {
     const [reviews, setReviews] = useState([]);
     const [reviewsLoading, setReviewsLoading] = useState(true)
     const [sort_by, setSort_by] = useState()
     const [order, setOrder] = useState()
+    const {category} = useParams()
+
     const handleSort = (e) => {
         setSort_by(e.target.value)
     }
 
-        useEffect(() => {
-            getReviews(sort_by, order).then((reviews) => {
-                setReviews(reviews)
-                setReviewsLoading(false)
-            })
-        }, [sort_by, order])
+    useEffect(() => {
+        getReviews(category, sort_by, order).then((reviews) => {
+            setReviews(reviews)
+            setReviewsLoading(false)
+        })
+    }, [category, sort_by, order])
+
     if (!reviewsLoading) {
         return (
             <section className="reviews-container">
@@ -35,6 +38,7 @@ function Reviews() {
                 <button type="button" onClick={() => {
                     setOrder("desc")
                 }}>Descending</button>
+                {category && <h3>Showing all reviews for {category}</h3>}
                 <hr></hr>
                 {reviews.map(review => {
                     return <ReviewCard key={review.review_id} review={review}/>

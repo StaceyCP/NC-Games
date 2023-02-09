@@ -7,15 +7,23 @@ const ncGamesApi = axios.create({
 
 // Server GET requests 
 
-export const getReviews = (sort_by, order) => {
+export const getReviews = (category, sort_by, order) => {
 
     return ncGamesApi.get('/reviews', {
         params: {
+            category,
             sort_by,
             order
         }
     }).then(({ data }) => {
         return data.reviews
+    })
+}
+
+
+export const getCategories = () => {
+    return ncGamesApi.get('/categories').then(({data}) => {
+        return data;
     })
 }
 
@@ -36,5 +44,17 @@ export const getReviewComments = (review_id) => {
 export const updateReviewById = (review_id, review_update) => {
     return ncGamesApi.patch(`/reviews/${review_id}`, review_update).then(({data}) => {
         return data.updatedReview;
+    })
+}
+
+export const updateCommentById = (comment_id, comment_update) => {
+    return ncGamesApi.patch(`/comments/${comment_id}`, comment_update).then(({data}) => {
+        return data.updatedComment;
+    })
+}
+
+export const postComment = (review_id, newComment) => {
+    return ncGamesApi.post(`/reviews/${review_id}/comments`, newComment).then(({data}) => {
+        return data.newComment;
     })
 }

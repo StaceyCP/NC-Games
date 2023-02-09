@@ -32,7 +32,7 @@ function CommentAdd({review_id, setError, setShowModal, setComments}) {
     return (
         <form onSubmit={handleSubmit} className='add-comment-form'>
             <img className="user-image" src={loggedInUser.avatar_url} alt="Users profile"></img>
-            <input className="add-comment-input" type="text" value={commentBody} onChange={handleChange}></input>
+            <input className="add-comment-input" type="text" value={commentBody} onChange={handleChange} required></input>
             <button className="add-comment-btn">Comment</button>
         </form>
     );

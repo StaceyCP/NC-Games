@@ -118,7 +118,6 @@ h3 {
 .review-page_post-details {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   padding: 8px;
 }
 
@@ -211,93 +210,22 @@ h3 {
   width: 70%;
 }
 
-.comment-date{
-  color: rgb(227, 224, 224);
-  font-size: 0.7em;
-  font-weight: normal;
-  margin-left: 5px;
+.comment-container_item-timestamp {
+  margin-top: -15px;
 }
 
 .comment-container_statistics {
-  align-items: center;
+  align-items: flex-end;
   display: flex;
   justify-content: center;
   flex-direction: row;
-  font-size: 15px;
+  font-size: 14px;
 }
 
-.comment_reaction {
-  all: unset;
-  background-image: url('../src/assets/thumbs-up.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  padding: 3px;
-  margin: 7px;
-  height: 16px;
-  width: 16px;
-}
-
-.comment-like:hover {
-  transform: scale(1.2);
-}
-
-.reacted {
-  background-image: url('../src/assets/thumbs-up-active.png');
-}
-
-.comment-dislike {
-  transform: rotate(180deg);
-}
-
-.comment-dislike:hover {
-  transform: rotate(180deg) scale(1.2);
-}
-
-.user-image {
-  background-color: whitesmoke;
-  border-radius: 50%;
-  height: 45px;
-  width: 45px;
-}
-
-.add-comment-form {
-  justify-content: space-evenly;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  width: 90%;
-}
-
-.add-comment-btn {
-  all: unset;
-  background-color: rgb(127, 255, 178);
-  border-radius: 25px;
-  color: #191919;
-  cursor: pointer;
-  font-size: 12px;
-  padding: 5px;
-}
-
-.add-comment-btn:hover {
-  transform: scale(1.1);
-  background-color: rgb(127, 255, 178);
-}
-
-.add-comment-input {
-  all: unset;
-  color: whitesmoke;
-  background-color: transparent;
-  border-bottom: 2px solid whitesmoke;
-  text-align: left;
-  padding: 3px;
-  transition: 0.5s;
-  margin: 0 10px;
-  width: 75%;
-}
-
-.add-comment-input:focus {
-  border-color: rgb(127, 255, 178);
+.comment-container_statistics img{
+  height: 20px;
+  margin: 11px;
+  width: 20px;
 }
 
 /* Modal */
@@ -442,15 +370,6 @@ h3 {
 
   .review-page_reactions p {
     text-align: center;
-  }
-
-  .add-comment-btn {
-    all: unset;
-    background-color: rgb(127, 255, 178);
-    border-radius: 25px;
-    color: #191919;
-    font-size: 16px;
-    padding: 10px;
   }
 
   /* Modal */

@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getReviewComments } from "../api";
-import CommentAdd from './CommentAdd';
 import Loading from './Loading';
-import SingleComment from './SingleComment';
 
-function Comments({setError, setShowModal}) {
+const likeIcon = require('../assets/thumbs-up.png');
+function Comments() {
     const {review_id} = useParams();
+
     const [comments, setComments] = useState([]);
     const [commentsLoading, setCommentsLoading] = useState(true);
 
+    const configureDate = (timestamp) =>  new Date(timestamp).toDateString()
     useEffect(() => {
         getReviewComments(review_id).then(reviewComments => {
             setComments(reviewComments)
@@ -21,10 +22,22 @@ function Comments({setError, setShowModal}) {
         return (
             <section className='comments-container'>
                 <h3>Comments</h3>
-                <CommentAdd review_id={review_id} setError={setError} setShowModal={setShowModal} setComments={setComments}/>
                 {comments.length === 0 && <p>Be the first to leave a comment</p>}
                 {comments.length > 0 && comments.map(({comment_id, author, body, created_at, votes}) => {
-                    return <SingleComment comment_id={comment_id} author={author} body={body} created_at={created_at} votes={votes} setShowModal={setShowModal} setError={setError}/>
+                    return <article key={comment_id} className='comments-container_list'>
+                        <div className='comment-container_item'>
+                            <div className='comment-container_item-details'>
+                                <h4 className='comment-container_item-author'>{author}</h4>
+                                <p className='comment-container_item-timestamp'>{configureDate(created_at)}</p>
+                                <p className='comment-container_item-comment'>{body}</p>
+                            </div>
+                            <div className='comment-container_statistics'>
+                                <p>{votes}</p>
+                                <img src={likeIcon} alt="Thumbs up"></img>
+                            </div>
+                        </div>
+                        <hr className='comment-divider'></hr>
+                    </article>
                 })}
             </section>
         );

@@ -38,3 +38,9 @@ export const updateCommentById = (comment_id, comment_update) => {
         return data.updatedComment;
     })
 }
+
+export const postComment = (review_id, newComment) => {
+    return ncGamesApi.post(`/reviews/${review_id}/comments`, newComment).then(({data}) => {
+        return data.newComment;
+    })
+}

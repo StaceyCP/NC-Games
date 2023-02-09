@@ -24,7 +24,7 @@ function Comments({setError, setShowModal}) {
                 <CommentAdd review_id={review_id} setError={setError} setShowModal={setShowModal} setComments={setComments}/>
                 {comments.length === 0 && <p>Be the first to leave a comment</p>}
                 {comments.length > 0 && comments.map(({comment_id, author, body, created_at, votes}) => {
-                    return <SingleComment comment_id={comment_id} author={author} body={body} created_at={created_at} votes={votes} setShowModal={setShowModal} setError={setError}/>
+                    return <SingleComment key={comment_id} comment_id={comment_id} author={author} body={body} created_at={created_at} votes={votes} setShowModal={setShowModal} setError={setError}/>
                 })}
             </section>
         );

@@ -3,8 +3,7 @@ import { postComment } from "../api";
 import { LoggedInContext } from "../contexts/LoggedIn";
 import { ErrorContext } from "../contexts/Error"
 
-
-function CommentAdd({review_id, setComments}) {
+function CommentAdd({review_id, setComments, commentCount, setCommentCount}) {
     const {isLoggedIn, loggedInUser} = useContext(LoggedInContext);
     const {setError, setShowModal} = useContext(ErrorContext)
     const [commentBody, setCommentBody] = useState('')
@@ -31,6 +30,7 @@ function CommentAdd({review_id, setComments}) {
             postComment(review_id, commentToAdd).then((newCommentFromAPI) => {
                 setComments((currentComments) => [newCommentFromAPI[0], ...currentComments]);
                 setCommentBody('')
+                setCommentCount(commentCount + 1)
             }).catch(err => {
                 console.log(err);
                 setError("Something went wrong please try again shortly");

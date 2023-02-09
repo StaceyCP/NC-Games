@@ -15,8 +15,10 @@ function ReviewPage() {
     const [reviewLoading, setReviewLoading] = useState(true);
     const [likeReaction, setLikeReaction] = useState(false);
     const [dislikeReaction, setDislikeReaction] = useState(false);
-    const {error, setError, showModal, setShowModal} = useContext(ErrorContext)
+    const [commentCount, setCommentCount] = useState(0)
+    
     const configuredDate = new Date(review.created_at).toDateString()
+    const {error, setError, showModal, setShowModal} = useContext(ErrorContext)
     const {review_id} = useParams();
 
     useEffect(() => {
@@ -25,6 +27,7 @@ function ReviewPage() {
             setReview(reviewFromAPI[0])
             setReviewLoading(false)
             setVoteCount(reviewFromAPI[0].votes)
+            setCommentCount(Number(reviewFromAPI[0].comment_count))
         }).catch(err => {
             setReviewLoading(false)
             setError("404 Review not found")
@@ -60,7 +63,7 @@ function ReviewPage() {
                         <div className="review-page_review-statistics">
                             <p>{voteCount}</p>
                             <img src={likeIcon} alt="heart icon"></img>
-                            <p>{review.comment_count}</p>
+                            <p>{commentCount}</p>
                             <img src={commentIcon} alt="speach bubble icon"></img>
                         </div>
                     </article>
@@ -96,7 +99,7 @@ function ReviewPage() {
                     </div>
                     <hr></hr>
                 </section>
-                <Comments/>
+                <Comments setError={setError} setShowModal={setShowModal} commentCount={commentCount} setCommentCount={setCommentCount}/>
             </main>
         );
     } else if (error !== '' && !reviewLoading) {

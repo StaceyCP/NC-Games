@@ -53,8 +53,18 @@ export const updateCommentById = (comment_id, comment_update) => {
     })
 }
 
+// Server POST requests
+
 export const postComment = (review_id, newComment) => {
     return ncGamesApi.post(`/reviews/${review_id}/comments`, newComment).then(({data}) => {
         return data.newComment;
     })
+}
+
+// Server DELETE requests
+
+export const deleteCommentById = (comment_id) => {
+    return ncGamesApi.delete(`/comments/${comment_id}`).then(() => {
+        return 
+    }) 
 }

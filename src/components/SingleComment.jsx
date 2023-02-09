@@ -1,7 +1,10 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { updateCommentById } from "../api"
+import { ErrorContext } from "../contexts/Error"
 
-function SingleComment({comment_id, author, body, created_at, votes, setError, setShowModal}) {
+function SingleComment({comment_id, author, body, created_at, votes}) {
+    const {setError, setShowModal} = useContext(ErrorContext)
+
     let vote = {
         inc_votes: 1
     }

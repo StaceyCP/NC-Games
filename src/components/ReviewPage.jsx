@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { getReviewById, updateReviewById } from "../api";
+import { ErrorContext } from "../contexts/Error";
 import Comments from "./Comments";
 import Loading from "./Loading";
 import Modal from "./Modal"
@@ -12,20 +13,23 @@ function ReviewPage() {
     const [review, setReview] = useState({});
     const [voteCount, setVoteCount] = useState('')
     const [reviewLoading, setReviewLoading] = useState(true);
-    const [error, setError] = useState('');
-    const [showModal, setShowModal] = useState(false)
     const [likeReaction, setLikeReaction] = useState(false);
     const [dislikeReaction, setDislikeReaction] = useState(false);
-
+    const {error, setError, showModal, setShowModal} = useContext(ErrorContext)
     const configuredDate = new Date(review.created_at).toDateString()
     const {review_id} = useParams();
+
     useEffect(() => {
         getReviewById(review_id).then(reviewFromAPI => {
+            setError('')
             setReview(reviewFromAPI[0])
             setReviewLoading(false)
             setVoteCount(reviewFromAPI[0].votes)
+        }).catch(err => {
+            setReviewLoading(false)
+            setError("404 Review not found")
         })
-    }, [review_id])
+    }, [review_id, setError, setShowModal])
     
     let vote = {
         inc_votes: 1
@@ -42,7 +46,7 @@ function ReviewPage() {
         })
     }
 
-    if (!reviewLoading) {
+    if (!reviewLoading && error === '') {
         return (
             <main className="review-page">
                 <section className="review-page_content">
@@ -67,7 +71,7 @@ function ReviewPage() {
                     <hr></hr>
                     <div className="review-page_reactions">
                         <h3>Did you like this review?</h3>
-                        {error !== '' && showModal === true && <Modal text={error} setShowModal={setShowModal}/>}
+                        {error !== '' && showModal === true && <Modal/>}
                         <button className="reaction-page_reaction like" type="button" aria-label="Add 1 to the review likes" onClick={() => {
                             if (!likeReaction && !dislikeReaction) {
                                 setLikeReaction(true);
@@ -92,12 +96,14 @@ function ReviewPage() {
                     </div>
                     <hr></hr>
                 </section>
-                <Comments setError={setError} setShowModal={setShowModal}/>
+                <Comments/>
             </main>
         );
+    } else if (error !== '' && !reviewLoading) {
+        return <h2>{error}</h2>
     } else {
         return <Loading component={"Review"}/>
-    }
+    } 
 }
 
 export default ReviewPage;

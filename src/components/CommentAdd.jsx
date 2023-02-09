@@ -1,9 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { postComment } from "../api";
 import { LoggedInContext } from "../contexts/LoggedIn";
+import { ErrorContext } from "../contexts/Error"
 
-function CommentAdd({review_id, setError, setShowModal, setComments}) {
+
+function CommentAdd({review_id, setComments}) {
     const {isLoggedIn, loggedInUser} = useContext(LoggedInContext);
+    const {setError, setShowModal} = useContext(ErrorContext)
     const [commentBody, setCommentBody] = useState('')
     const [isCommentAddDisabled, setIsCommentAddDisabled] = useState(true)
 

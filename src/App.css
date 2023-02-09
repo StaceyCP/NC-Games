@@ -184,6 +184,12 @@ h3 {
 
 /* ReviewPage - Comments */
 
+.comment-date {
+  font-size: 12px;
+  font-weight: normal;
+  color: rgb(207, 207, 207);
+}
+
 .comments-container {
   align-items: center;
   display: flex;

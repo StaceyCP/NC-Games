@@ -6,29 +6,59 @@ import { getReviews } from "../api";
 import { ErrorContext } from "../contexts/Error";
 
 function Reviews() {
-    const {category} = useParams()
     const [reviews, setReviews] = useState([]);
     const [reviewsLoading, setReviewsLoading] = useState(true)
-    const {error, setError, showModal, setShowModal} = useContext(ErrorContext)
+    const [sort_by, setSort_by] = useState()
+    const [order, setOrder] = useState()
+    const {error, setError} = useContext(ErrorContext);
+    const {category} = useParams()
+
+    const handleSort = (e) => {
+        setSort_by(e.target.value)
+    }
 
     useEffect(() => {
-        getReviews(category).then((reviews) => {
+        getReviews(category, sort_by, order).then((reviews) => {
+            setError('')
             setReviews(reviews)
             setReviewsLoading(false)
+        }).catch(err => {
+            setReviewsLoading(false)
+            setError("404 Category not found")
         })
-    }, [category])
+    }, [category, sort_by, order, setError])
 
-    if (!reviewsLoading) {
+    if (!reviewsLoading && error === '') {
         return (
             <section className="reviews-container">
                 <h2>Reviews</h2>
                 {category && <h3>Showing all reviews for {category}</h3>}
+                <label htmlFor="sort_by">Sort By: </label>
+                <select id="sort_by" onChange={handleSort}>
+                    <option defaultValue value="created_at">date</option>
+                    <option value="comment_count">comments</option>
+                    <option value="votes">likes</option>
+                </select>
+                <div className="sort-btn_container">
+                    <button className="sort-btn asc" type="button" onClick={() => {
+                        setOrder("asc")
+                        document.querySelector(".asc").classList.add("active")
+                        document.querySelector(".desc").classList.remove("active")
+                    }}>Ascending</button>
+                    <button className="sort-btn desc active" type="button" onClick={() => {
+                        setOrder("desc")
+                        document.querySelector(".desc").classList.add("active")
+                        document.querySelector(".asc").classList.remove("active")
+                    }}>Descending</button>
+                </div>
                 <hr></hr>
                 {reviews.map(review => {
                     return <ReviewCard key={review.review_id} review={review}/>
                 })}
             </section>
         );
+    } else if (!reviewsLoading && error !== '') {
+        return <h2>{error}</h2>
     } else {
         return <Loading component={"Reviews"}/>
     }

@@ -64,6 +64,10 @@ h3 {
   text-transform: uppercase;
 }
 
+.error-msg {
+  margin: 20px;
+}
+
 /* Reviews */
 
 .reviews-container {
@@ -394,6 +398,29 @@ h3 {
     margin: 0 15px;
     font-size: 18px;
     font-weight: bolder;
+  }
+
+  .sort-btn_container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .sort-btn {
+    all: unset;
+    background-color: rgb(127, 255, 178);
+    border-radius: 25px;
+    color: #191919;
+    cursor: pointer;
+    margin: 10px;
+    padding: 10px 15px;
+  }
+
+  .sort-btn:hover {
+    transform: scale(1.1);
+  }
+
+  .active {
+    background-color: whitesmoke;
   }
   
   .review-card {

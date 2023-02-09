@@ -16,6 +16,7 @@ function ReviewPage() {
     const [showModal, setShowModal] = useState(false)
     const [likeReaction, setLikeReaction] = useState(false);
     const [dislikeReaction, setDislikeReaction] = useState(false);
+    const [commentCount, setCommentCount] = useState(0)
 
     const configuredDate = new Date(review.created_at).toDateString()
     const {review_id} = useParams();
@@ -24,6 +25,7 @@ function ReviewPage() {
             setReview(reviewFromAPI[0])
             setReviewLoading(false)
             setVoteCount(reviewFromAPI[0].votes)
+            setCommentCount(Number(reviewFromAPI[0].comment_count))
         })
     }, [review_id])
     
@@ -56,7 +58,7 @@ function ReviewPage() {
                         <div className="review-page_review-statistics">
                             <p>{voteCount}</p>
                             <img src={likeIcon} alt="heart icon"></img>
-                            <p>{review.comment_count}</p>
+                            <p>{commentCount}</p>
                             <img src={commentIcon} alt="speach bubble icon"></img>
                         </div>
                     </article>
@@ -92,7 +94,7 @@ function ReviewPage() {
                     </div>
                     <hr></hr>
                 </section>
-                <Comments setError={setError} setShowModal={setShowModal}/>
+                <Comments setError={setError} setShowModal={setShowModal} commentCount={commentCount} setCommentCount={setCommentCount}/>
             </main>
         );
     } else {

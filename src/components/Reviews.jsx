@@ -9,6 +9,7 @@ function Reviews() {
     const [reviewsLoading, setReviewsLoading] = useState(true)
     const [sort_by, setSort_by] = useState()
     const [order, setOrder] = useState()
+    
     const {category} = useParams()
 
     const handleSort = (e) => {

@@ -19,7 +19,7 @@ function Navigation() {
             </div>}
             {!isLoggedIn && <div className="user-information">
                 <p className="user-information_username"><Link to="/login" className="user_login-link">Log In</Link></p>
-                <img className="user-information_avatar" src={defaultUser} alt={`${loggedInUser} avatar`}></img>
+                <img className="user-information_avatar" src={defaultUser} alt="default blank avatar"></img>
             </div> }
         </nav>
     );

@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { LoggedInContext } from "../contexts/LoggedIn";
+const defaultUser = require('../assets/blank-profile-picture.png')
 
 function LogIn() {
     const {isLoggedIn, setIsLoggedIn, loggedInUser, setLoggedInUser, usersList} = useContext(LoggedInContext);
@@ -25,17 +26,20 @@ function LogIn() {
     }
     if (!isLoggedIn) {
         return (
-            <article>
-                <form onSubmit={handleLogIn}>
-                    <label>Username</label>
-                    <input type="text" value={username} onChange={(e) => {
+            <article className="login-page">
+                <form onSubmit={handleLogIn} className="login-form">
+                    <h2 className="login-title">Log In</h2>
+                    <img className="user-information_avatar" src={defaultUser} alt="default blank avatar"></img>
+                    <label htmlFor="username">Username</label>
+                    <input id="username" required className="login-input" type="text" value={username} onChange={(e) => {
                         setUsername(e.target.value)
                     }}></input>
-                    <label>Password</label>
-                    <input type="password" value={password} onChange={(e) => {
+                    <label htmlFor="password">Password</label>
+                    <input id="password" required className="login-input" type="password" value={password} onChange={(e) => {
                         setPassword(e.target.value)
                     }}></input>
-                    <button>Log in</button>
+                    <button className="login-btn">Log in</button>
+                    <p>Not got an account? <Link to="/signup">Sign Up</Link></p>
                 </form>
             </article>
         );

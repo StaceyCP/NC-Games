@@ -48,17 +48,27 @@ h3 {
   text-decoration: none;
 }
 
+.user-information {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-right: -10px;
+}
+
+.user-information p {
+  margin: 10px;
+}
+
 .user-information_avatar {
   background-color: whitesmoke;
   border-radius: 50%;
   height: 50px;
-  margin-top: 20px;
+  margin: 15px;
   width: 50px;
 }
 
 .user-information_username {
-  font-size: 16px;
-  margin-top: 3px;
+  font-size: 18px;
 }
 
 .category-navigation {

@@ -1,8 +1,12 @@
 import Reviews from "./Reviews";
+import CategoryNav from "./CategoryNav";
 
 function ReviewsHome() {
     return (
-        <Reviews/>        
+        <>
+            <CategoryNav/>
+            <Reviews/>        
+        </>
     );
 }
 

@@ -8,8 +8,10 @@ function LogIn() {
     const [isVerified, setIsVerified] = useState(false)
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [attemptedLogin, setAttemptedLogin] = useState(false);
 
     const verifyUser = (userToVerify) => {
+        setAttemptedLogin(true)
         if (username === userToVerify.username) {
             setIsVerified(true)
         }
@@ -38,6 +40,7 @@ function LogIn() {
                     <input id="password" required className="login-input" type="password" value={password} onChange={(e) => {
                         setPassword(e.target.value)
                     }}></input>
+                    {!isVerified && attemptedLogin && <p>Oh no! Your password or your username don't match our records please try again</p>}
                     <button className="login-btn">Log in</button>
                     <p>Not got an account? <Link to="/signup">Sign Up</Link></p>
                 </form>

@@ -409,13 +409,13 @@ h3 {
 
 /* login page */
 
-.login-page {
+.login-page, .signup-page {
   align-items: center;
   display: flex;
   justify-content: center;
 }
 
-.login-form {
+.login-form, .signup-form {
   align-items: center;
   background-color: whitesmoke;
   border-radius: 25px;

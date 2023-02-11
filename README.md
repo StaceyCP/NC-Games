@@ -1,71 +1,35 @@
 # NC-Games 
 
-This is a continuation of the solo nc-games back end project here I aim to create the front end to utilise the back end.
-Please find a link to rhe figma plans here: https://www.figma.com/file/oU3WSdDghcnNF3QEGJJHzA/NC-Games-Reviews?node-id=0%3A1&t=FdaX8izeSyU38gZG-0
+Welcome to [Table Top](https://exquisite-taiyaki-455ba5.netlify.app/) a board games review react app.
 
-## Available Scripts
+This is a continuation of the solo nc-games backend project where I have designed and implemented the front end that utilises the endpoints I set up in the back end project.
+
+To start off this project I did some research into other review sites and got a grasp of some of the key features this for of website needed and also I looked at some of the stylistic choices made that lean towards this genre of game. This helped me design some wire frames and mock ups for how I wanted to make Table Top.
+
+Following on from the designs I sat down and identified components and planned put the app tree, where I planned components, state and context.
+Please find a link to the [figma plans](https://www.figma.com/file/oU3WSdDghcnNF3QEGJJHzA/NC-Games-Reviews?node-id=0%3A1&t=FdaX8izeSyU38gZG-0)
+
+To see the deployed back end project as well as some of the available endpoints 
+Please find a link to the [back-end project](https://nc-games-api-53j2.onrender.com/api)
+
+## Getting started 
+
+To use this project you can clone this repository onto your local machine,
+In the terminal you can type: `git clone https://github.com/StaceyCP/NC-Games`
+
+once this is done you can run the command npm install to install react, react-dom, react-router-dom, react-scripts and axios as dependencies
+
+### Minimum requirements
+
+This app has been developed using v19.0.1 
+As a minimum requirement you should be running this app on v19.0.1 
 
 In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+Which will run the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The page will reload when you make changes.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

@@ -48,11 +48,11 @@ function LogIn() {
         );
     } else {
         return (
-            <article>
+            <article className="loggedin-confirm">
                 <h2>Success!</h2>
-                <img src={loggedInUser.avatar_url} alt={loggedInUser.username}></img>
+                <img className="user-avatar" src={loggedInUser.avatar_url} alt={loggedInUser.username}></img>
                 <h2>Logged in as {loggedInUser.username}</h2>
-                <button><Link to="/">Reviews</Link></button>
+                <button><Link className="loggedin-confirm_link" to="/">Reviews</Link></button>
             </article>
         );
     }

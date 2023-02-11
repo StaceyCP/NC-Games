@@ -450,6 +450,11 @@ h3 {
   transform: scale(1.1);
 }
 
+.chosen-avatar {
+  transform: scale(1.1);
+  box-shadow: #797979 2px 2px 2px;
+}
+
 .login-btn, .signup-btn {
   all: unset;
   background-color: #191919;
@@ -503,6 +508,21 @@ h3 {
 .loggedin-confirm_link {
   color: #191919;
   text-decoration: none;
+}
+
+.password-invalid, .username-invalid, .name-invalid {
+  color: rgb(255, 89, 89);
+  font-size: 16px;
+}
+
+.valid {
+  border: rgb(62, 198, 117) 2px solid;
+  border-radius: 3px;
+}
+
+.invalid {
+  border: rgb(255, 89, 89) 2px solid;
+  border-radius: 3px;
 }
 
 /* Media queries */

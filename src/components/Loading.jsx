@@ -1,6 +1,9 @@
 function Loading({component}) {
     return (
-        <h2>{component} loading...</h2>
+        <>
+            <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <h2>{component} loading...</h2>
+        </>
     );
 }
 

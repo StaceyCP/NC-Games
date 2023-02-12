@@ -10,6 +10,7 @@ function Reviews() {
     const [reviewsLoading, setReviewsLoading] = useState(true)
     const [sort_by, setSort_by] = useState()
     const [order, setOrder] = useState()
+    const [isCategoryRequestError, setIsCategoryRequestError] = useState(false)
     const {error, setError} = useContext(ErrorContext);
     const {category} = useParams()
 
@@ -24,11 +25,12 @@ function Reviews() {
             setReviewsLoading(false)
         }).catch(err => {
             setReviewsLoading(false)
-            setError("404 Category not found")
+            setIsCategoryRequestError(true)
+            setError("Oh no! Something went wrong!")
         })
     }, [category, sort_by, order, setError])
 
-    if (!reviewsLoading && error === '') {
+    if (!reviewsLoading) {
         return (
             <section className="reviews-container">
                 <h2 className="reviews-heading">Reviews</h2>
@@ -57,10 +59,10 @@ function Reviews() {
                 })}
             </section>
         );
-    } else if (!reviewsLoading && error !== '') {
-        return <h2>{error}</h2>
-    } else {
+    } else if (reviewsLoading) {
         return <Loading component={"Reviews"}/>
+    } else if (isCategoryRequestError) {
+        return <h2>{error}</h2>
     }
 }
 

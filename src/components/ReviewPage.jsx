@@ -16,6 +16,7 @@ function ReviewPage() {
     const [likeReaction, setLikeReaction] = useState(false);
     const [dislikeReaction, setDislikeReaction] = useState(false);
     const [commentCount, setCommentCount] = useState(0)
+    const [isRequestError, setIsRequestError] = useState(false)
     
     const configuredDate = new Date(review.created_at).toDateString()
     const {error, setError, showModal, setShowModal} = useContext(ErrorContext)
@@ -30,6 +31,7 @@ function ReviewPage() {
             setCommentCount(Number(reviewFromAPI[0].comment_count))
         }).catch(err => {
             setReviewLoading(false)
+            setIsRequestError(true)
             setError("404 Review not found")
         })
     }, [review_id, setError, setShowModal])
@@ -49,7 +51,7 @@ function ReviewPage() {
         })
     }
 
-    if (!reviewLoading && error === '') {
+    if (!reviewLoading && !isRequestError) {
         return (
             <main className="review-page">
                 <section className="review-page_content">
@@ -102,11 +104,11 @@ function ReviewPage() {
                 <Comments setError={setError} setShowModal={setShowModal} commentCount={commentCount} setCommentCount={setCommentCount}/>
             </main>
         );
-    } else if (error !== '' && !reviewLoading) {
-        return <h2>{error}</h2>
-    } else {
+    } else if (reviewLoading) {
         return <Loading component={"Review"}/>
-    } 
+    } else if (isRequestError) {
+        return <h2>{error}</h2>
+    }
 }
 
 export default ReviewPage;

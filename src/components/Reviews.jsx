@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { getReviews } from "../api";
 import { ErrorContext } from "../contexts/Error";
 import CategoryNav from "./CategoryNav";
+import ReviewAdd from "./ReviewAdd";
 
 function Reviews() {
     const [reviews, setReviews] = useState([]);
@@ -12,6 +13,7 @@ function Reviews() {
     const [sort_by, setSort_by] = useState()
     const [order, setOrder] = useState()
     const [isCategoryRequestError, setIsCategoryRequestError] = useState(false)
+    const [showReviewForm, setShowReviewForm] = useState(false)
     const {error, setError} = useContext(ErrorContext);
     const {category} = useParams()
 
@@ -37,6 +39,7 @@ function Reviews() {
                 <h2 className="reviews-heading">Reviews</h2>
                 <CategoryNav/>
                 {category && <h3>Showing all reviews for {category}</h3>}
+                {showReviewForm && <ReviewAdd setShowReviewForm={setShowReviewForm}/>}
                 <div className="sort-btn_container">
                     <label htmlFor="sort_by">Sort By: </label>
                     <select id="sort_by" onChange={handleSort}>
@@ -59,6 +62,9 @@ function Reviews() {
                 {reviews.map(review => {
                     return <ReviewCard key={review.review_id} review={review}/>
                 })}
+                <button className="add-review-btn" onClick={() => {
+                    setShowReviewForm(true)
+                }}>+ Add a new review</button>
             </section>
         );
     } else if (reviewsLoading) {

@@ -1,17 +1,24 @@
-import { useContext, useState } from "react"
-import { postReview } from "../api"
+import { useContext, useState, useEffect } from "react"
+import { getCategories, postReview } from "../api"
 import { LoggedInContext } from "../contexts/LoggedIn"
 
-function ReviewAdd() {
+function ReviewAdd({setShowReviewForm}) {
     const {loggedInUser} = useContext(LoggedInContext)
     const [newTitle, setNewTitle] = useState('')
     const [newReview_body, setNewReview_body] = useState('')
     const [newDesigner, setNewDesigner] = useState('')
     const [newCategory, setNewCategory] = useState('')
     const [newReview_img_url, setNewReview_img_url] = useState('')
-
+    const [categories, setCategories] = useState([])
+    useEffect(() => {
+        getCategories().then((categoriesFromApi) => {
+            setCategories(categoriesFromApi)
+        })
+    }, [])
+    
     const handleReviewSubmit = (e) => {
         e.preventDefault()
+        setShowReviewForm(false)
         postReview(reviewToAdd).then((reviewFromAPI) => {
             console.log(reviewFromAPI);
         })
@@ -30,22 +37,31 @@ function ReviewAdd() {
             <article>
                 <h3>Write a review</h3>
                 <form>
-                    <input className="title-input" type="text" value={newTitle} onChange={(e) => {
+                    <label></label>
+                    <input id="title" className="title-input" type="text" value={newTitle} onChange={(e) => {
                         setNewTitle(e.target.value)
                     }}></input>
-                    <textarea className="body-input" value={newReview_body} onChange={(e) => {
+                    <textarea id="body" className="body-input" value={newReview_body} onChange={(e) => {
                         setNewReview_body(e.target.value)
                     }}></textarea>
-                    <input className="designer-input" type="text" value={newDesigner} onChange={(e) => {
+                    <input id="designer" className="designer-input" type="text" value={newDesigner} onChange={(e) => {
                         setNewDesigner(e.target.value)
                     }}></input>
-                    <input className="review-img-input" type="text" value={newReview_img_url} onChange={(e) => {
+                    <input id="image-url" className="review-img-input" type="text" value={newReview_img_url} onChange={(e) => {
                         setNewReview_img_url(e.target.value)
                     }}></input>
-                    <select onChange={(e) => {
+                    <select id="category" onChange={(e) => {
                         setNewCategory(e.target.value)
-                    }}></select>
+                    }}>
+                        <option defaultValue>Select category</option>
+                        {categories.map(({slug}) => {
+                            return <option>{slug}</option>
+                        })}
+                    </select>
                     <button onClick={handleReviewSubmit}>Add</button>
+                    <button type="button" onClick={() => {
+                        setShowReviewForm(false)
+                    }}>Cancel</button>
                 </form>
             </article>
         </section>

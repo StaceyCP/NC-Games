@@ -9,12 +9,13 @@ body {
   box-sizing: border-box;
   color: whitesmoke;
   font-family: 'Poppins';
+  padding-bottom: 50px;
 }
 
 h1 {
   font-size: 1.4rem;
   text-transform: uppercase;
-  margin: 10px 0px;
+  margin: 10px 0px 10px 20px;
 }
 
 h2 {
@@ -23,7 +24,7 @@ h2 {
 
 h3 {
   font-size: 1.1rem;
-  margin: 10px 0px;
+  margin: 10px 0px ;
 }
 
 /* Header and Navigation */
@@ -64,7 +65,6 @@ h3 {
   align-items: center;
   display: flex;
   justify-content: center;
-  margin-right: -10px;
 }
 
 .user-information p {
@@ -85,14 +85,17 @@ h3 {
 
 .category-navigation {
   background-color: #191919;
+  text-align: center;
   padding: 10px;
+  margin-bottom: 30px;
 }
 
 .category-link {
   color: whitesmoke;
   margin: 0 10px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: normal;
+  text-align: center;
   text-transform: uppercase;
   text-decoration: none;
   transition: 0.5s;
@@ -119,7 +122,9 @@ h3 {
 }
 
 .reviews-container h2 {
-  margin-top: 50px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 40px;
 }
 
 .reviews-container hr {
@@ -255,6 +260,10 @@ h3 {
   transform: rotate(180deg) scale(1.2);
 }
 
+label {
+  margin-right: 5px;
+}
+
 /* ReviewPage - Comments */
 
 .comment-date {
@@ -346,7 +355,7 @@ h3 {
   width: 90%;
 }
 
-.add-comment-btn {
+.add-comment-btn, .add-review-btn {
   all: unset;
   background-color: rgb(127, 255, 178);
   border-radius: 25px;
@@ -356,7 +365,7 @@ h3 {
   padding: 5px;
 }
 
-.add-comment-btn:hover {
+.add-comment-btn:hover,  .add-review-btn:hover {
   transform: scale(1.1);
   background-color: rgb(127, 255, 178);
 }
@@ -379,6 +388,17 @@ h3 {
 
 .add-comment-input:focus {
   border-color: rgb(127, 255, 178);
+}
+
+.sort-btn {
+  all: unset;
+  background-color: whitesmoke;
+  border-radius: 25px;
+  font-size: 10px;
+  color: #191919;
+  cursor: pointer;
+  margin: 10px;
+  padding: 7px 9px;
 }
 
 /* Modal */
@@ -464,6 +484,7 @@ h3 {
   font-size: 1.1rem;
   margin-top: 20px;
   padding: 10px 15px;
+  transition: 0.3s;
 }
 
 .login-btn:hover {
@@ -639,18 +660,21 @@ h3 {
   }
 
   .sort-btn_container {
+    align-items: center;
     display: flex;
     flex-direction: row;
+    justify-content: center;
   }
 
   .sort-btn {
     all: unset;
     background-color: whitesmoke;
     border-radius: 25px;
+    font-size: 14px;
     color: #191919;
     cursor: pointer;
     margin: 10px;
-    padding: 10px 15px;
+    padding: 7px 9px;
   }
 
   .sort-btn:hover {
@@ -749,7 +773,7 @@ h3 {
     text-align: center;
   }
 
-  .add-comment-btn {
+  .add-comment-btn,  .add-review-btn {
     all: unset;
     background-color: rgb(127, 255, 178);
     border-radius: 25px;

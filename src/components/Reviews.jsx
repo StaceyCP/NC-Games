@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { getReviews } from "../api";
 import { ErrorContext } from "../contexts/Error";
+import CategoryNav from "./CategoryNav";
 
 function Reviews() {
     const [reviews, setReviews] = useState([]);
@@ -34,14 +35,15 @@ function Reviews() {
         return (
             <section className="reviews-container">
                 <h2 className="reviews-heading">Reviews</h2>
+                <CategoryNav/>
                 {category && <h3>Showing all reviews for {category}</h3>}
-                <label htmlFor="sort_by">Sort By: </label>
-                <select id="sort_by" onChange={handleSort}>
-                    <option defaultValue value="created_at">date</option>
-                    <option value="comment_count">comments</option>
-                    <option value="votes">likes</option>
-                </select>
                 <div className="sort-btn_container">
+                    <label htmlFor="sort_by">Sort By: </label>
+                    <select id="sort_by" onChange={handleSort}>
+                        <option defaultValue value="created_at">date</option>
+                        <option value="comment_count">comments</option>
+                        <option value="votes">likes</option>
+                    </select>
                     <button className="sort-btn asc" type="button" onClick={() => {
                         setOrder("asc")
                         document.querySelector(".asc").classList.add("active")

@@ -1,4 +1,5 @@
 import { useContext, useState } from "react"
+import { postReview } from "../api"
 import { LoggedInContext } from "../contexts/LoggedIn"
 
 function ReviewAdd() {
@@ -8,9 +9,12 @@ function ReviewAdd() {
     const [newDesigner, setNewDesigner] = useState('')
     const [newCategory, setNewCategory] = useState('')
     const [newReview_img_url, setNewReview_img_url] = useState('')
+
     const handleReviewSubmit = (e) => {
         e.preventDefault()
-        setShowModal(false)
+        postReview(reviewToAdd).then((reviewFromAPI) => {
+            console.log(reviewFromAPI);
+        })
     }
 
     const reviewToAdd = {
@@ -47,13 +51,5 @@ function ReviewAdd() {
         </section>
     );
 }
-
-
-// "owner": "mallionaire",
-// "title": "Super awesome board game review",
-// "review_body": "Super awesome is a super awesome board game",
-// "designer": "Stacey",
-// "category": "children's games",
-// "review_img_url": "https://www.superawesome.com/wp-content/uploads/2020/09/SA_Epic_Logo.jpg"
 
 export default ReviewAdd;

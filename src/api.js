@@ -78,6 +78,12 @@ export const postUser = (newUser) => {
     })
 }
 
+export const postReview = (newReview) => {
+    return ncGamesApi.post('/reviews', newReview).then(({data}) => {
+        return data.newReview
+    })
+}
+
 // Server DELETE requests
 
 export const deleteCommentById = (comment_id) => {
